@@ -147,8 +147,8 @@ def process_enquiry(message, data, call_model=call_gemini,
     """Run one enquiry end to end. Returns (status, draft)."""
     try:
         result = classify_message(message, call_model)
-    except AIUnavailableError:
-        print("The AI service is unavailable. No draft was made.")
+    except AIUnavailableError as exc:
+        print("The AI service is unavailable. No draft was made. Reason:", str(exc)[:150])
         log_status("error_ai_unavailable", message, "", log_path)
         return "error_ai_unavailable", ""
     except InvalidAIOutputError:
