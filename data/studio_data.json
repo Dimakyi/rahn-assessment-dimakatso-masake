@@ -1,0 +1,13 @@
+{
+  "currency": "ZAR",
+  "packages": {
+    "single": {"label": "Single session", "sessions": 1, "price": 180},
+    "5": {"label": "5 sessions", "sessions": 5, "price": 800},
+    "12": {"label": "12 sessions", "sessions": 12, "price": 1680}
+  },
+  "saturday_slots": {
+    "09:00": "Available",
+    "10:00": "Full",
+    "11:00": "Available"
+  }
+}
