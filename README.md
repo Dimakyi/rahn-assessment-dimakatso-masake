@@ -112,6 +112,7 @@ Gemini sometimes returns `503 UNAVAILABLE` when demand is high. To handle this:
 - **Claude (chat):** generated the first versions of `main.py`, `assistant.py` and `tests/test_assistant.py` and `docs/SRS.md`, which I then ran, debugged and extended. It also diagnosed the Gemini 503 errors, wrote the retry and fallback code and `tests/test_retry.py`, and drafted the technical parts of this README, `docs/REGRESSION_TESTS.md` and `docs/RAPLH_LOG.md`. I checked them against my own test runs.
 - **Gemini API:** used inside the program only to classify each customer message into JSON. It never supplies prices or availability.
 - **Not used for:** the Working style answers below, which I wrote myself.
+
 ## Project structure
 
 ```
@@ -125,3 +126,19 @@ docs/SRS.md           requirements
 docs/REGRESSION_TESTS.md   test descriptions and results
 docs/RAPLH_LOG.md     AI work log
 ```
+## Working style
+
+Q1 – Stuck at 22:00 after three hours
+Break the problem down to its simplest form, using my own thinking or AI.
+Re-read the error and rerun the programme, writing down what I tried.
+Ask AI to break it down further, or ask someone who can assist.
+Set a 30-minute limit: if it's still unresolved by 22:30, I stop for the night, note where I got to, write down the error and what I have tried to fix it, and ask my mentor first thing the next morning rather than pushing on while tired.
+
+Q2 – Teammate silent
+I will take responsibility and communicate with my teammate. If I am still struggling to get hold of them through calls, chats, and emails, I will report the matter first so that my mentor is aware of the situation: "I am unable to get hold of my partner, and quite some time has passed." I will mention my attempts and the time spent reaching out to them. In the meantime, I will keep working on our presentation and declare what is done and what's not.
+
+Q3 – Mentor says you're wrong
+I would be curious and disappointed about what my mentor might be trying to communicate. Most importantly, I would ask for feedback on why they said my work is wrong so that I work in the right direction. After hearing why, I would identify which parts of the two days of work set aside what can't, and check my new plan with my mentor before going further, so I don't waste more time on things that will only lead me in the wrong direction with no time on my side. 
+
+Q4 – Monday, Wednesday and Friday
+My weekly family commitment falls mostly on Tuesdays and Thursdays, so it doesn't clash with the Monday, Wednesday or Friday session days. If an appointment moved to one of those days, I would rearrange the family commitment or catch up afterwards. For transport money, I would budget ahead from my weekly allowance and, if it fell short, raise it with my mentor early rather than miss a session, or, if possible, present online if I am required to be in the office that day, to prioritise getting the work done to satisfy the client.
