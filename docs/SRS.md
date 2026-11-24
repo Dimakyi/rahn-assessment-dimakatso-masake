@@ -16,17 +16,17 @@ The studio owner wants staff to answer package-price and Saturday-availability e
 
 ## 4. Functional requirements
 - **FR-01:** The program accepts a customer message typed at the command line.
-- **FR-02:** The message is sent to Gemini, which must return JSON containing `intent`, `details` and `requires_human_approval`.
+- **FR-02:** The message is sent to Gemini, which must return JSON containing `intent`, `details`, `requires_human_approval`, `packages` and `asks_saturday`.
 - **FR-03:** The JSON is validated against a Pydantic model. Invalid JSON is rejected.
 - **FR-04:** Facts (prices, Saturday slots) are looked up by code in `data/studio_data.json`, never supplied by the AI.
-- **FR-05:** The reply is built only from looked-up facts. If a requested fact is missing, the reply is exactly: "I'll check with the owner and come back to you."
+- **FR-05:** The reply is built only from looked-up facts. If nothing in the enquiry can be answered from the data, the reply is exactly: "I'll check with the owner and come back to you." If only part of the enquiry is missing, the known parts are answered and the same phrase is added for the missing part.
 - **FR-06:** The draft is printed and staff are asked `Send? (y/n)`.
 - **FR-07:** Every outcome is appended to `status_log.json` with timestamp, message, draft and status.
 - **FR-08:** The status `sent` is recorded only when staff answer `y` and the draft is valid (see section 7).
 
 ## 5. Non-functional requirements
 - **NFR-01 Security:** The API key lives in `.env` (git-ignored); only `.env.example` is committed.
-- **NFR-02 Reliability:** An AI timeout, error or invalid output never crashes the program and never produces a `sent` record.
+- **NFR-02 Reliability:** An AI timeout, error or invalid output never crashes the program and never produces a `sent` record. Temporary AI errors (429, 500, 503, 504) are retried with backoff, then a fallback model is tried, before the program gives up.
 - **NFR-03 Cost:** Free tools only (Python, Gemini free tier). Tests run with the Gemini call mocked, so no key or paid call is needed.
 
 ## 6. Data inputs and outputs
