@@ -1,6 +1,8 @@
 """FitDesk enquiry assistant: core logic."""
 import json
 import os
+import random
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import List
@@ -44,18 +46,28 @@ class EnquiryResult(BaseModel):
     asks_saturday: bool
 
 
-def call_gemini(message: str) -> str:
-    """Send the message to Gemini and return the raw JSON text."""
+RETRYABLE_CODES = {429, 500, 503, 504}
+MAX_ATTEMPTS = 4
+BASE_DELAY_S = 1.0
+DEFAULT_FALLBACK_MODEL = "gemini-2.5-flash-lite"
+
+
+def _make_client():
     from google import genai
     from google.genai import types
 
     load_dotenv()
-    client = genai.Client(
+    return genai.Client(
         api_key=os.getenv("GEMINI_API_KEY"),
         http_options=types.HttpOptions(timeout=TIMEOUT_MS),
     )
+
+
+def _generate(client, model: str, message: str) -> str:
+    from google.genai import types
+
     response = client.models.generate_content(
-        model=os.getenv("GEMINI_MODEL", MODEL_NAME),
+        model=model,
         contents=PROMPT + message,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
@@ -63,6 +75,37 @@ def call_gemini(message: str) -> str:
         ),
     )
     return response.text
+
+
+def _is_retryable(exc: Exception) -> bool:
+    from google.genai import errors
+
+    return isinstance(exc, errors.APIError) and exc.code in RETRYABLE_CODES
+
+
+def call_gemini(message: str) -> str:
+    """Send the message to Gemini and return the raw JSON text.
+
+    Retries transient errors (429/5xx) with backoff, then falls back to a
+    second model. Other errors are raised immediately.
+    """
+    client = _make_client()
+    primary = os.getenv("GEMINI_MODEL", MODEL_NAME)
+    fallback = os.getenv("GEMINI_FALLBACK_MODEL", DEFAULT_FALLBACK_MODEL)
+    models = [primary] if fallback == primary else [primary, fallback]
+
+    last_error = None
+    for model in models:
+        for attempt in range(MAX_ATTEMPTS):
+            try:
+                return _generate(client, model, message)
+            except Exception as exc:
+                if not _is_retryable(exc):
+                    raise
+                last_error = exc
+                if attempt < MAX_ATTEMPTS - 1:
+                    time.sleep(BASE_DELAY_S * 2**attempt + random.uniform(0, 0.5))
+    raise last_error
 
 
 def classify_message(message: str, call_model=call_gemini) -> EnquiryResult:
