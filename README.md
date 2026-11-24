@@ -1,4 +1,6 @@
-﻿# Enquiry Assistant
+﻿Hours spent: 6hr :13m
+
+# Enquiry Assistant
 
 A command-line assistant that helps studio staff answer customer enquiries about prices and Saturday availability. It drafts a reply, and a staff member approves or rejects it before anything is "sent".
 
