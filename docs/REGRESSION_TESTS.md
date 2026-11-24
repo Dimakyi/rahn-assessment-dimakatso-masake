@@ -126,3 +126,11 @@ These protect the reliability requirement (NFR-02) after the retry and fallback 
 - **Expected:** No draft, a clear message, no crash, status `error_ai_unavailable`.
 - **Actual:** The program printed "The AI service is unavailable. No draft was made." and `Status recorded: error_ai_unavailable`. This repeated across several runs without a crash.
 - **Result:** PASS (this real failure is why the retry and fallback were added; see `docs/RAPLH_LOG.md`)
+
+### M3: Tests run without an API key
+- **Requirement:** NFR-03 (AC-06)
+- **Input / precondition:** `.env` temporarily renamed to `.env.off`, so no `GEMINI_API_KEY` is available.
+- **Steps:** Run `python -m pytest`. Rename the file back afterwards.
+- **Expected:** All automated tests pass without a key or internet call.
+- **Actual:** 10 passed in 1.01s.
+- **Result:** PASS
