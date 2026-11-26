@@ -1,8 +1,8 @@
-﻿Hours spent: 6hr :13m
+﻿Hours spent: 6hr :25min
 
 # Enquiry Assistant
 
-A command-line assistant that helps studio staff answer customer enquiries about prices and Saturday availability. It drafts a reply, and a staff member approves or rejects it before anything is "sent".
+A command-line assistant that helps studio staff answer customer enquire about prices and Saturday availability. It drafts a reply, and a staff member approves or rejects it before anything is "sent".
 
 ## How it works
 
@@ -30,7 +30,7 @@ Copy-Item .env.example .env
 The file should look like this:
 
 ```
-GEMINI_API_KEY=your_key_here
+GEMINI_API_KEY=your-key-here
 ```
 
 Optional settings:
@@ -130,6 +130,8 @@ docs/RAPLH_LOG.md     AI work log
 ```
 ## Working style
 
+Written by me, without AI
+
 Q1 – Stuck at 22:00 after three hours
 Break the problem down to its simplest form, using my own thinking or AI.
 Re-read the error and rerun the programme, writing down what I tried.
@@ -140,7 +142,7 @@ Q2 – Teammate silent
 I will take responsibility and communicate with my teammate. If I am still struggling to get hold of them through calls, chats, and emails, I will report the matter first so that my mentor is aware of the situation: "I am unable to get hold of my partner, and quite some time has passed." I will mention my attempts and the time spent reaching out to them. In the meantime, I will keep working on our presentation and declare what is done and what's not.
 
 Q3 – Mentor says you're wrong
-I would be curious and disappointed about what my mentor might be trying to communicate. Most importantly, I would ask for feedback on why they said my work is wrong so that I work in the right direction. After hearing why, I would identify which parts of the two days of work set aside what can't, and check my new plan with my mentor before going further, so I don't waste more time on things that will only lead me in the wrong direction with no time on my side. 
+I would be curious and disappointed about what my mentor might be trying to communicate. Most importantly, I would ask for feedback on why they said my work is wrong so that I work in the right direction. After hearing why, I would identify which parts of the two days of work I can set aside and what I can't , and check my new plan with my mentor before going further, so I don't waste more time on things that will only lead me in the wrong direction with no time on my side. 
 
 Q4 – Monday, Wednesday and Friday
-My weekly family commitment falls mostly on Tuesdays and Thursdays, so it doesn't clash with the Monday, Wednesday or Friday session days. If an appointment moved to one of those days, I would rearrange the family commitment or catch up afterwards. For transport money, I would budget ahead from my weekly allowance and, if it fell short, raise it with my mentor early rather than miss a session, or, if possible, present online if I am required to be in the office that day, to prioritise getting the work done to satisfy the client.
+My weekly family commitment falls mostly on Tuesdays and Thursdays, so it doesn't clash with the Monday, Wednesday or Friday session days. If an appointment moved to one of those days, I would rearrange the family commitment or catch up afterwards. For transport money, I would budget ahead from my weekly allowance and, if it fell short, raise it with my mentor early rather than miss a session, or, if possible, present online if I am required to be in the office that day, to priorities getting the work done to satisfy the client.
